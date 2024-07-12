@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Unofficial Academic Performance Calculator for ambeadkar university delhi students</title>
+    <style>
+        body {
+            background-color: #1d0a0a;
+            color: #ffffff;
+        }
+
+        .container {
+            background-color: #1d0a0a;
+            color: #ffffff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        table, select, input {
+            background-color: #1d0a0a;
+            color: #ffffff;
+            border: 1px solid #ffcc00;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #1d0a0a;
+            color: #ffffff;
+        }
+
+        .warning {
+            background-color: #1d0a0a;
+            color: #ffcc00;
+            border: 1px solid #ffcc00;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .warning p {
+            margin-bottom: 10px;
+        }
+
+        .error {
+            color: #ffffff;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 10px;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                margin-bottom: 15px;
+            }
+
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+            }
+
+            .marks-mode {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .marks-mode input {
+                width: 45%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Unofficial Academic Performance Calculator for ambeadkar university delhi students</h1>
+
+        <div class="warning">
+            <h3>Disclaimer:</h3>
+            <p><strong>Affiliation:</strong> This site is not affiliated with or endorsed by any university or educational institution. It is an independent project created to assist students in calculating their grades.</p>
+            <p><strong>Accuracy of Results:</strong> The grade calculations provided by this site are based on the input data provided by users and the algorithms used within the site. While we strive for accuracy, these results should be considered as preliminary estimates. Users are strongly advised to cross-verify their grades independently or consult with their university for official grade calculations and confirmation.</p>
+            <p><strong>No Warranty:</strong> This site and its content are provided "as is" without any warranties of any kind, either express or implied. We do not guarantee that the information on this site will be accurate, complete, or up-to-date.</p>
+            <p><strong>Limitation of Liability:</strong> The author and operators of this site shall not be held liable for any errors, omissions, or inaccuracies in the grade calculations provided. Furthermore, they shall not be responsible for any loss, damage, or inconvenience caused as a result of reliance on the information provided by this site.</p>
+            <p><strong>User Responsibility:</strong> Users are responsible for verifying their grades and ensuring the accuracy of the input data they provide. For official grade confirmation and other academic inquiries, users should contact their respective universities or educational institutions.</p>
+            <p><strong>Changes to Disclaimer:</strong> We reserve the right to modify this disclaimer at any time without prior notice. Users are encouraged to review this disclaimer periodically for any changes.</p>
+            <p>By using this site, you acknowledge and agree to the terms outlined in this disclaimer.</p>
+            <p>Please Note that 'O' grade means outstanding grade(highest grade) and should not be confused with zero (0).</p>
+            <p>For Pivacy related information, please refer to the <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Statement</a>.</p>
+        </div>
+
+        <div>
+            <label for="calculationMode">Calculation Mode:</label>
+            <select id="calculationMode">
+                <option value="grade">Grade Calculator for a Course</option>
+                <option value="marks">Convert Marks to Grade of Assessment</option>
+                <option value="spi-cpi">Calculate SPI/CPI</option>
+            </select>
+        </div>
+
+        <div id="courseCountDiv" style="display:none;">
+            <label for="courseCount">Select number of Courses in your semester:</label>
+            <select id="courseCount"></select>
+        </div>
+
+        <div id="assessmentCountDiv">
+            <label for="assessmentCount">Number of Assessments:</label>
+            <select id="assessmentCount"></select>
+        </div>
+
+        <table id="calculationTable">
+            <thead>
+                <tr id="tableHeader">
+                    <th class="assessment-mode">Assessment</th>
+                    <th class="grade-mode">Grade</th>
+                    <th class="marks-mode">Your Marks</th>
+                    <th class="marks-mode">Max Marks</th>
+                    <th class="weightage-mode">Weightage (%)</th>
+                    <th class="marks-mode">Calculated Grade</th>
+                </tr>
+            </thead>
+            <tbody id="calculationBody"></tbody>
+        </table>
+
+        <button id="calculateButton">Calculate</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const gradePoints = {
+            'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'P': 4, 'F': 0, 'AB': 0
+        };
+
+        const weightageOptions = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+
+        const getGradeFromPercentage = (percentage) => {
+            if (percentage >= 95) return 'O';
+            if (percentage >= 85) return 'A+';
+            if (percentage >= 75) return 'A';
+            if (percentage >= 65) return 'B+';
+            if (percentage >= 55) return 'B';
+            if (percentage >= 45) return 'C';
+            if (percentage >= 35) return 'P';
+            return 'F';
+        };
+
+        const calculationModeSelect = document.getElementById('calculationMode');
+        const courseCountDiv = document.getElementById('courseCountDiv');
+        const courseCountSelect = document.getElementById('courseCount');
+        const assessmentCountDiv = document.getElementById('assessmentCountDiv');
+        const assessmentCountSelect = document.getElementById('assessmentCount');
+        const calculationBody = document.getElementById('calculationBody');
+        const resultDiv = document.getElementById('result');
+        const calculateButton = document.getElementById('calculateButton');
+        const tableHeader = document.getElementById('tableHeader');
+
+        function resetInputs() {
+            calculationBody.innerHTML = '';
+            resultDiv.innerHTML = '';
+        }
+
+        function updateCountOptions() {
+            resetInputs();
+            const mode = calculationModeSelect.value;
+            courseCountDiv.style.display = mode === 'spi-cpi' ? 'block' : 'none';
+            assessmentCountDiv.style.display = ['grade', 'marks'].includes(mode) ? 'block' : 'none';
+
+            if (mode === 'spi-cpi') {
+                courseCountSelect.innerHTML = '';
+                for (let i = 5; i <= 50; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i;
+                    courseCountSelect.appendChild(option);
+                }
+            } else {
+                assessmentCountSelect.innerHTML = '';
+                const options = mode === 'grade' ? [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                options.forEach(num => {
+                    const option = document.createElement('option');
+                    option.value = num;
+                    option.textContent = num;
+                    assessmentCountSelect.appendChild(option);
+                });
+            }
+            updateTable();
+        }
+
+        function updateTable() {
+            const mode = calculationModeSelect.value;
+            let courseCount, assessmentCount;
+            if (mode === 'spi-cpi') {
+                courseCount = parseInt(courseCountSelect.value);
+            } else {
+                assessmentCount = parseInt(assessmentCountSelect.value);
+            }
+            calculationBody.innerHTML = '';
+
+            tableHeader.innerHTML = '';
+            if (mode === 'spi-cpi') {
+                tableHeader.innerHTML = `
+                    <th class="assessment-mode">Course</th>
+                    <th class="grade-mode">Final Grade of courses </th>
+                `;
+                for (let i = 0; i < courseCount; i++) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td data-label="Course ${i + 1}" class="assessment-mode">Course ${i + 1}</td>
+                        <td data-label="final grade of Course" class="grade-mode"> ${i + 1} </td>
+
+                            <select class="grade">
+                                ${Object.keys(gradePoints).map(grade => `<option value="${grade}">${grade}</option>`).join('')}
+                            </select>
+                        </td>
+                    `;
+                    calculationBody.appendChild(row);
+                }
+            } else {
+                tableHeader.innerHTML = `
+                    <th class="assessment-mode">Assessment</th>
+                    <th class="grade-mode">Grade</th>
+                    <th class="marks-mode">Your Marks</th>
+                    <th class="marks-mode">Max Marks</th>
+                    <th class="weightage-mode">Weightage (%)</th>
+                    <th class="marks-mode">Calculated Grade</th>
+                `;
+                for (let i = 0; i < assessmentCount; i++) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td data-label="Assessment" class="assessment-mode">${i + 1}</td>
+                        <td data-label="Grade" class="grade-mode">
+                         
+                            <select class="grade">
+                                ${Object.keys(gradePoints).map(grade => `<option value="${grade}">${grade}</option>`).join('')}
+                            </select>
+                        </td>
+                        <td data-label="Your Marks" class="marks-mode"><input type="number" class="marks" min="0"></td>
+                        <td data-label="Max Marks" class="marks-mode"><input type="number" class="maxMarks" min="1" value="100"></td>
+                        <td data-label="Weightage (%)" class="weightage-mode"><select class="weightage">
+                            ${weightageOptions.map(weight => `<option value="${weight}">${weight}</option>`).join('')}
+                        </select></td>
+                        <td data-label="Calculated Grade" class="marks-mode calculatedGrade"></td>
+                    `;
+                    calculationBody.appendChild(row);
+                }
+            }
+
+            document.querySelectorAll('.assessment-mode').forEach(el => el.style.display = ['grade', 'marks'].includes(mode) ? '' : 'none');
+            document.querySelectorAll('.grade-mode').forEach(el => el.style.display = mode !== 'marks' ? '' : 'none');
+            document.querySelectorAll('.marks-mode').forEach(el => el.style.display = mode === 'marks' ? '' : 'none');
+            document.querySelectorAll('.weightage-mode').forEach(el => el.style.display = mode === 'grade' ? '' : 'none');
+        }
+
+        function calculateResult() {
+            const mode = calculationModeSelect.value;
+            let result = 0;
+            let totalWeightage = 0;
+            let totalCredits = 0;
+
+            if (mode === 'grade') {
+                document.querySelectorAll('#calculationBody tr').forEach(row => {
+                    const weightage = parseFloat(row.querySelector('.weightage').value) || 0;
+                    totalWeightage += weightage;
+                });
+
+                if (totalWeightage !== 100) {
+                    resultDiv.innerHTML = `<p class="error">Error: Total weightage must be exactly 100%. Current total: ${totalWeightage}%</p>`;
+                    return;
+                }
+            }
+
+            document.querySelectorAll('#calculationBody tr').forEach(row => {
+                let grade, weightage;
+                if (mode === 'grade') {
+                    grade = row.querySelector('.grade').value;
+                    weightage = parseFloat(row.querySelector('.weightage').value) || 0;
+                    result += gradePoints[grade] * (weightage / 100);
+                    totalWeightage += weightage;
+                } else if (mode === 'marks') {
+                    const marks = parseFloat(row.querySelector('.marks').value) || 0;
+                    const maxMarks = parseFloat(row.querySelector('.maxMarks').value) || 1;
+                    const percentage = (marks / maxMarks) * 100;
+                    grade = getGradeFromPercentage(percentage);
+                    row.querySelector('.calculatedGrade').textContent = grade;
+                } else if (mode === 'spi-cpi') {
+                    grade = row.querySelector('.grade').value;
+                    result += gradePoints[grade] * 4;  // Fixed credit of 4
+                    totalCredits += 4;
+                }
+            });
+
+            let resultText = '';
+
+            if (mode === 'grade') {
+                const finalResult = result;
+                const finalGrade = getGradeFromPercentage(finalResult * 10);
+                resultText = `
+                    <p>Final Grade Point Average (GPA): ${finalResult.toFixed(2)}</p>
+                    <p>Final Grade: ${finalGrade}</p>
+                `;
+            } else if (mode === 'marks') {
+                resultText = `<p>Grades have been calculated.</p>`;
+            } else if (mode === 'spi-cpi') {
+                const spi = totalCredits === 0 ? 0 : result / totalCredits;
+                resultText = `
+                    <p>Semester Performance Index (SPI): ${spi.toFixed(2)}</p>
+                    <p>Cumulative Performance Index (CPI): ${spi.toFixed(2)}</p>
+                `;
+            }
+
+            resultDiv.innerHTML = resultText;
+        }
+
+        calculationModeSelect.addEventListener('change', updateCountOptions);
+        courseCountSelect.addEventListener('change', updateTable);
+        assessmentCountSelect.addEventListener('change', updateTable);
+        calculateButton.addEventListener('click', calculateResult);
+
+        updateCountOptions();
+    </script>
+</body>
+</html>
