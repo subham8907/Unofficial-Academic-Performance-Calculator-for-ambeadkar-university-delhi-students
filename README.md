@@ -1,5 +1,5 @@
 # Unofficial-Academic-Performance-Calculator-for-ambeadkar-university-delhi-students
-Unofficial Academic Performance Calculator for ambeadkar university delhi students
+
 Disclaimer:
 Affiliation: This site is not affiliated with or endorsed by any university or educational institution. It is an independent project created to assist students in calculating their grades.
 
