@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Unofficial Academic Performance Calculator for ambeadkar university delhi students</title>
+    <style>
+        body {
+            background-color: #1d0a0a;
+            color: #ffffff;
+        }
+
+        .container {
+            background-color: #1d0a0a;
+            color: #ffffff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        table, select, input {
+            background-color: #1d0a0a;
+            color: #ffffff;
+            border: 1px solid #ffcc00;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #1d0a0a;
+            color: #ffffff;
+        }
+
+        .warning {
+            background-color: #1d0a0a;
+            color: #ffcc00;
+            border: 1px solid #ffcc00;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .warning p {
+            margin-bottom: 10px;
+        }
+
+        .error {
+            color: #ffffff;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 10px;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                margin-bottom: 15px;
+            }
+
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+            }
+
+            .marks-mode {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .marks-mode input {
+                width: 45%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mathematics Behind the Academic Performance Calculator</h1>
+        
+        <h2>1. Marks to Percentage Conversion</h2>
+        <p>Before assigning a grade, the calculator converts marks to a percentage:</p>
+        <div class="formula">
+            Percentage = (Your Marks / Max Marks) × 100
+        </div>
+
+        <h2>2. Percentage to Grade Conversion</h2>
+        <p>The percentage is then converted to a grade using the following scale:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Percentage Range</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Percentage Range">95% and above</td>
+                    <td data-label="Grade">O</td>
+                </tr>
+                <tr>
+                    <td data-label="Percentage Range">85% to 94%</td>
+                    <td data-label="Grade">A+</td>
+                </tr>
+                <tr>
+                    <td data-label="Percentage Range">75% to 84%</td>
+                    <td data-label="Grade">A</td>
+                </tr>
+                <tr>
+                    <td data-label="Percentage Range">65% to 74%</td>
+                    <td data-label="Grade">B+</td>
+                </tr>
+                <tr>
+                    <td data-label="Percentage Range">55% to 64%</td>
+                    <td data-label="Grade">B</td>
+                </tr>
+                <tr>
+                    <td data-label="Percentage Range">45% to 54%</td>
+                    <td data-label="Grade">C</td>
+                </tr>
+                <tr>
+                    <td data-label="Percentage Range">35% to 44%</td>
+                    <td data-label="Grade">P</td>
+                </tr>
+                <tr>
+                    <td data-label="Percentage Range">Below 35%</td>
+                    <td data-label="Grade">F</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Grade Point Conversion</h2>
+        <p>The calculator uses a grade point system where each letter grade is assigned a numerical value:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Grade</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Grade">O (Outstanding)</td>
+                    <td data-label="Points">10</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">A+</td>
+                    <td data-label="Points">9</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">A</td>
+                    <td data-label="Points">8</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">B+</td>
+                    <td data-label="Points">7</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">B</td>
+                    <td data-label="Points">6</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">C</td>
+                    <td data-label="Points">5</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">P (Pass)</td>
+                    <td data-label="Points">4</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">F (Fail)</td>
+                    <td data-label="Points">0</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">AB (Absent)</td>
+                    <td data-label="Points">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Grade Point Average (GPA) for Individual Courses</h2>
+        <p>For calculating the GPA of an individual course, a weighted average is used:</p>
+        <div class="formula">
+            Course GPA = Σ(Assessment Grade Point × Assessment Weightage)
+        </div>
+        <p>Where:</p>
+        <ul>
+            <li>Assessment Grade Point is the point value of the grade received for each assessment</li>
+            <li>Assessment Weightage is the percentage weight of each assessment</li>
+        </ul>
+        <p>Example calculation:</p>
+        <ul>
+            <li>let say i have course have Two assessments in a course, each with 50% weightage</li>
+            <li>I got B+ (7 points) in 1st assessment, A+ (9 points) in 2nd assessment</li>
+            <li>now convert wiegtage to decimal; conversion of 50 percentage wiegtage will be 0.50</li>
+            <li>Calculation: (7 × 0.50) + (9 × 0.50) = 8 GPA</li>
+        </ul>
+
+        <p>Match the final GPA to this table for the course's final grade:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>GPA Range</th>
+                    <th>Final Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="GPA Range">9.5 and above</td>
+                    <td data-label="Final Grade">O</td>
+                </tr>
+                <tr>
+                    <td data-label="GPA Range">8.5 to 9.4</td>
+                    <td data-label="Final Grade">A+</td>
+                </tr>
+                <tr>
+                    <td data-label="GPA Range">7.5 to 8.4</td>
+                    <td data-label="Final Grade">A</td>
+                </tr>
+                <tr>
+                    <td data-label="GPA Range">6.5 to 7.4</td>
+                    <td data-label="Final Grade">B+</td>
+                </tr>
+                <tr>
+                    <td data-label="GPA Range">5.5 to 6.4</td>
+                    <td data-label="Final Grade">B</td>
+                </tr>
+                <tr>
+                    <td data-label="GPA Range">4.5 to 5.4</td>
+                    <td data-label="Final Grade">C</td>
+                </tr>
+                <tr>
+                    <td data-label="GPA Range">3.5 to 4.4</td>
+                    <td data-label="Final Grade">P</td>
+                </tr>
+                <tr>
+                    <td data-label="GPA Range">Below 3.5</td>
+                    <td data-label="Final Grade">F</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>In this example, 8 GPA corresponds to an A grade.</p>
+
+        <h2>5. Semester Performance Index (SPI) and Cumulative Performance Index (CPI) Calculation</h2>
+        <p>The SPI/CPI is calculated using the following formula:</p>
+        <div class="formula">
+            SPI/CPI = Σ(Course Grade Point × Course Credit) / Total Credits
+        </div>
+        <p>Where:</p>
+        <ul>
+            <li>Course Grade Point is the final grade point for each course</li>
+            <li>Course Credit is the number of credits for each course (assumed to be 4 in this calculator for simplicity)</li>
+            <li>Total Credits is the sum of credits for all courses in the semester</li>
+        </ul>
+        <p>Note: In real-world scenarios, course credits may vary. This calculator assumes a fixed credit of 4 for all courses for simplicity.</p>
+
+        <p>Example calculation:</p>
+        <ul>
+            <li>let say i 5 course in one semester</li>
+            <li>so total credits will be 20 if we assume each credit is 4</li>
+            <li>lets say 1st course i got A+,2nd course i got B+,3rd course i got B+,4th course i got B,5th course i got P grade,</li>
+            <li>before calculation we have convert this grades into grade point </li>
+            <li>Calculation will be: (9 × 4) + (7 ×4 ) + (7 ×4 )+ (6 ×4 )+ (4 ×4 )= 132/total credits which is 20</li>
+            <li>so final cpi/spi is 6.60 </li>
+        </ul>
+
+        
+
+        <h2>Conclusion</h2>
+        <p>These mathematical concepts form the core of the academic performance calculator, allowing for the conversion between marks, grades, grade points, and percentages, as well as the calculation of weighted averages for overall performance metrics.</p>
+    </div>
+</body>
+</html>
