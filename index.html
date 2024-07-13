@@ -95,10 +95,9 @@
             .marks-mode input {
                 width: 45%;
             }
-           
             .attendance-input {
                 width: 60px;
-            }
+        }
        
             
         }
@@ -188,6 +187,7 @@
         const resultDiv = document.getElementById('result');
         const calculateButton = document.getElementById('calculateButton');
         const tableHeader = document.getElementById('tableHeader');
+        
 
         function resetInputs() {
             calculationBody.innerHTML = '';
@@ -260,13 +260,11 @@
                 for (let i = 0; i < assessmentCount; i++) {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        row.innerHTML = `
     <td data-label="Assessment" class="assessment-mode">${i + 1}</td>
     <td data-label="Total classes Attended" class="attendance-mode"><input type="number" class="lecturesAttended attendance-input" min="0"></td>
     <td data-label="Total classes held" class="attendance-mode"><input type="number" class="totalLectures attendance-input" min="1"></td>
     <td data-label="Attendance Percentage (%)" class="attendance-mode calculatedAttendancePercentage"></td>
 `;
-                    `;
                     calculationBody.appendChild(row);
                 }
             } else {
