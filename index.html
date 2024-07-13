@@ -100,7 +100,7 @@
 </head>
 <body>
     <div class="container">
-        <h1> Unofficial Academic Performance Calculator for ambeadkar university delhi students</h1>
+        <h1>Unofficial Academic Performance Calculator for Ambedkar University Delhi Students</h1>
 
         <div class="warning">
             <h3>Disclaimer:</h3>
@@ -111,8 +111,8 @@
             <p><strong>User Responsibility:</strong> Users are responsible for verifying their grades and ensuring the accuracy of the input data they provide. For official grade confirmation and other academic inquiries, users should contact their respective universities or educational institutions.</p>
             <p><strong>Changes to Disclaimer:</strong> We reserve the right to modify this disclaimer at any time without prior notice. Users are encouraged to review this disclaimer periodically for any changes.</p>
             <p>By using this site, you acknowledge and agree to the terms outlined in this disclaimer.</p>
-            <p>Please Note that 'O' grade means outstanding grade(highest grade) and should not be confused with zero (0).</p>
-            <p>For Pivacy related information, please refer to the <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Statement</a>.</p>
+            <p>Please Note that 'O' grade means outstanding grade (highest grade) and should not be confused with zero (0).</p>
+            <p>For Privacy related information, please refer to the <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Statement</a>.</p>
             <p>If you want to know Mathematics Behind the Academic Performance Calculator please click <a href="behind.html" target="_blank" rel="noopener noreferrer">here</a>.</p>
         </div>
 
@@ -122,6 +122,7 @@
                 <option value="grade">Grade Calculator for a Course</option>
                 <option value="marks">Convert Marks to Grade of Assessment</option>
                 <option value="spi-cpi">Calculate SPI/CPI</option>
+                <option value="attendance">Calculate Attendance Percentage</option>
             </select>
         </div>
 
@@ -217,29 +218,46 @@
         function updateTable() {
             const mode = calculationModeSelect.value;
             let courseCount, assessmentCount;
+
             if (mode === 'spi-cpi') {
                 courseCount = parseInt(courseCountSelect.value);
             } else {
                 assessmentCount = parseInt(assessmentCountSelect.value);
             }
+
             calculationBody.innerHTML = '';
 
-            tableHeader.innerHTML = '';
             if (mode === 'spi-cpi') {
                 tableHeader.innerHTML = `
                     <th class="assessment-mode">Course</th>
-                    <th class="grade-mode">Final Grade of courses </th>
+                    <th class="grade-mode">Final Grade of Course</th>
                 `;
                 for (let i = 0; i < courseCount; i++) {
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td data-label="Course ${i + 1}" class="assessment-mode">Course ${i + 1}</td>
-                        <td data-label="final grade of Course" class="grade-mode"> ${i + 1} </td>
-
+                        <td data-label="Final Grade of Course" class="grade-mode">
                             <select class="grade">
                                 ${Object.keys(gradePoints).map(grade => `<option value="${grade}">${grade}</option>`).join('')}
                             </select>
                         </td>
+                    `;
+                    calculationBody.appendChild(row);
+                }
+            } else if (mode === 'attendance') {
+                tableHeader.innerHTML = `
+                    <th class="assessment-mode">Assessment</th>
+                    <th class="attendance-mode">Total class Attended</th>
+                    <th class="attendance-mode">Total classes held</th>
+                    <th class="attendance-mode">Attendance Percentage (%)</th>
+                `;
+                for (let i = 0; i < assessmentCount; i++) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td data-label="Assessment" class="assessment-mode">${i + 1}</td>
+                        <td data-label="Lectures Attended" class="attendance-mode"><input type="number" class="lecturesAttended" min="0"></td>
+                        <td data-label="Total Lectures" class="attendance-mode"><input type="number" class="totalLectures" min="1"></td>
+                        <td data-label="Attendance Percentage (%)" class="attendance-mode calculatedAttendancePercentage"></td>
                     `;
                     calculationBody.appendChild(row);
                 }
@@ -257,16 +275,17 @@
                     row.innerHTML = `
                         <td data-label="Assessment" class="assessment-mode">${i + 1}</td>
                         <td data-label="Grade" class="grade-mode">
-                         
                             <select class="grade">
                                 ${Object.keys(gradePoints).map(grade => `<option value="${grade}">${grade}</option>`).join('')}
                             </select>
                         </td>
                         <td data-label="Your Marks" class="marks-mode"><input type="number" class="marks" min="0"></td>
                         <td data-label="Max Marks" class="marks-mode"><input type="number" class="maxMarks" min="1" value="100"></td>
-                        <td data-label="Weightage (%)" class="weightage-mode"><select class="weightage">
-                            ${weightageOptions.map(weight => `<option value="${weight}">${weight}</option>`).join('')}
-                        </select></td>
+                        <td data-label="Weightage (%)" class="weightage-mode">
+                            <select class="weightage">
+                                ${weightageOptions.map(weight => `<option value="${weight}">${weight}</option>`).join('')}
+                            </select>
+                        </td>
                         <td data-label="Calculated Grade" class="marks-mode calculatedGrade"></td>
                     `;
                     calculationBody.appendChild(row);
@@ -314,6 +333,11 @@
                     grade = row.querySelector('.grade').value;
                     result += gradePoints[grade] * 4;  // Fixed credit of 4
                     totalCredits += 4;
+                } else if (mode === 'attendance') {
+                    const attended = parseInt(row.querySelector('.lecturesAttended').value) || 0;
+                    const total = parseInt(row.querySelector('.totalLectures').value) || 1;
+                    const attendancePercentage = (attended / total) * 100;
+                    row.querySelector('.calculatedAttendancePercentage').textContent = attendancePercentage.toFixed(2);
                 }
             });
 
@@ -334,6 +358,8 @@
                     <p>Semester Performance Index (SPI): ${spi.toFixed(2)}</p>
                     <p>Cumulative Performance Index (CPI): ${spi.toFixed(2)}</p>
                 `;
+            } else if (mode === 'attendance') {
+                resultText = `<p>Attendance percentages have been calculated.</p>`;
             }
 
             resultDiv.innerHTML = resultText;
