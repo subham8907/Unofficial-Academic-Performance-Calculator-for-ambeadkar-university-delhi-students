@@ -2,7 +2,7 @@
 
 Disclaimer:
 
-Affiliation: This site is not affiliated with or endorsed by any university or educational institution. It is an independent project created to assist students in calculating their grades.
+Affiliation: This project is not affiliated with or endorsed by any university or educational institution. It is an independent project created to assist students in calculating their grades.
 
 Accuracy of Results: The grade calculations provided by this site are based on the input data provided by users and the algorithms used within the site. While we strive for accuracy, these results should be considered as preliminary estimates. Users are strongly advised to cross-verify their grades independently or consult with their university for official grade calculations and confirmation.
 
