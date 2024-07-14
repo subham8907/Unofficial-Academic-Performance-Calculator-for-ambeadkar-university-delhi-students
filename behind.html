@@ -8,7 +8,6 @@
         body {
             background-color: #1d0a0a;
             color: #ffffff;
-            font-family: "Times New Roman", Times, serif;
         }
 
         .container {
@@ -33,7 +32,7 @@
 
         .warning {
             background-color: #1d0a0a;
-            color: #ffcc00;
+            color: #ffffff;
             border: 1px solid #ffcc00;
             padding: 10px;
             margin-bottom: 20px;
@@ -48,27 +47,6 @@
             color: #ffffff;
             font-weight: bold;
             margin-top: 10px;
-        }
-
-        .formula {
-            color: #ffcc00;
-            font-weight: bold;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ffcc00;
-            border-radius: 5px;
-        }
-
-        .example {
-            background-color: #2d1a1a;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-
-        .example h3 {
-            color: #ffcc00;
-            margin-top: 0;
         }
 
         @media (max-width: 600px) {
@@ -117,12 +95,23 @@
             .marks-mode input {
                 width: 45%;
             }
+            .rib {
+            background-color: #1d0a0a;
+            color: #ffffff;
+            border: 1px solid #ffcc00;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
         }
+    }
+            
     </style>
 </head>
 <body>
 <a href="index.html">Home</a>
-    <div class="container">
+<P></P>
+
+    <div class="warning">
         <h1>Mathematics Behind the Academic Performance Calculator</h1>
         
         <h2>1. Marks to Percentage Conversion</h2>
@@ -235,27 +224,13 @@
             <li>Assessment Grade Point is the point value of the grade received for each assessment</li>
             <li>Assessment Weightage is the percentage weight of each assessment</li>
         </ul>
-        
-        <div class="example">
-            <h3>Example Calculation:</h3>
-            <p>Let's calculate the GPA for a course with two assessments:</p>
-            <ul>
-                <li>Assessment 1: Grade B+ (7 points), Weightage 50%</li>
-                <li>Assessment 2: Grade A+ (9 points), Weightage 50%</li>
-            </ul>
-            <p>Steps:</p>
-            <ol>
-                <li>Convert weightage to decimal: 50% = 0.50</li>
-                <li>Calculate weighted grade points:
-                    <ul>
-                        <li>Assessment 1: 7 × 0.50 = 3.5</li>
-                        <li>Assessment 2: 9 × 0.50 = 4.5</li>
-                    </ul>
-                </li>
-                <li>Sum the weighted grade points: 3.5 + 4.5 = 8</li>
-            </ol>
-            <p>Course GPA = 8</p>
-        </div>
+        <p>Example calculation:</p>
+        <ul>
+            <li>let say i have course have Two assessments in a course, each with 50% weightage</li>
+            <li>I got B+ (7 points) in 1st assessment, A+ (9 points) in 2nd assessment</li>
+            <li>now convert wiegtage to decimal; conversion of 50 percentage wiegtage will be 0.50</li>
+            <li>Calculation: (7 × 0.50) + (9 × 0.50) = 8 GPA</li>
+        </ul>
 
         <p>Match the final GPA to this table for the course's final grade:</p>
         <table>
@@ -315,124 +290,42 @@
         </ul>
         <p>Note: In real-world scenarios, course credits may vary. This calculator assumes a fixed credit of 4 for all courses for simplicity.</p>
 
-        
-            <h3>Example Calculation for SPI:</h3>
-            <p>Let's calculate the SPI for a semester with 5 courses:</p>
-            <table>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Course</th>
-                            <th>Grade(G)</th>
-                            <th>Credits (Ci)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Course 1</td>
-                            <td>9</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>Course 2</td>
-                            <td>7</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>Course 3</td>
-                            <td>7</td>
-                            <td>4</td>
-                        </tr>
-                        <td>Course 4</td>
-                            <td>7</td>
-                            <td>4</td>
-                        </tr>
-                        <td>Course 5</td>
-                            <td>4</td>
-                            <td>4</td>
-                        </tr>
-
-            </table>
-            <p>Steps:</p>
-            <ol>
-                <li>Calculate the sum of (Grade Point × Credits) for each course:
-                    <ul>
-                        <li>(9 × 4) + (7 × 4) + (7 × 4) + (6 × 4) + (4 × 4) = 36 + 28 + 28 + 24 + 16 = 132</li>
-                    </ul>
-                </li>
-                <li>Calculate the total credits: 4 + 4 + 4 + 4 + 4 = 20</li>
-                <li>Apply the SPI formula: 132 / 20 = 6.60</li>
-            </ol>
-            <p>SPI for the semester = 6.60</p>
-        </div>
-
-        <h2>Calculating Cumulative Performance Index (CPI)</h2>
-        <p>The CPI is calculated using the same formula as SPI, but it takes into account all courses from all semesters:</p>
-        <div class="formula">
-            CPI = Σ(Gi × Ci) / Σ(Ci)
-        </div>
-        <p>Where:</p>
+        <p>Example calculation:</p>
         <ul>
-            <li>Gi = Grade points for course i</li>
+            <li>let say i have 5 course in one semester</li>
+            <li>so total credits will be 20 if we assume each credit is 4</li>
+            <li>lets say 1st course i got A+,2nd course i got B+,3rd course i got B+,4th course i got B,5th course i got P grade,</li>
+            <li>before calculation we have convert this grades into grade point </li>
+            <li>Calculation will be: (9 × 4) + (7 ×4 ) + (7 ×4 )+ (6 ×4 )+ (4 ×4 )= 132/total credits which is 20</li>
+            <li>so final cpi/spi is 6.60 </li>
+        </ul>
+<p>For calculating C.P.I:<p>
+
+<P>Must take all course from all semesester into account formula remain same use same formula for used for calculating s.p.i<p>
+
+   <div class="formula">
+        <h2>CPI Formula:</h2>
+        <p>CPI = Σ(Gi * Ci) / Σ(Ci)</p>
+        <ul>
+            <li>Gi = Grade points for courses i</li>
             <li>Ci = Credits for course i</li>
         </ul>
-
-        
-            <h3>Example CPI Calculation:</h3>
-            <p>Let's calculate the CPI for three courses across different semesters:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Course</th>
-                        <th>Grade Point (Gi)</th>
-                        <th>Credits (Ci)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Course 1</td>
-                        <td>8</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Course 2</td>
-                        <td>9</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Course 3</td>
-                        <td>7</td>
-                        <td>3</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p>Steps:</p>
-            <ol>
-                <li>Calculate Σ(Gi × Ci):
-                    <ul>
-                        <li>Course 1: 8 × 3 = 24</li>
-                        <li>Course 2: 9 × 4 = 36</li>
-                        <li>Course 3: 7 × 3 = 21</li>
-                        <li>Sum: 24 + 36 + 21 = 81</li>
-                    </ul>
-                </li>
-                <li>Calculate Σ(Ci):
-                    <ul>
-                        <li>3 + 4 + 3 = 10</li>
-                    </ul>
-                </li>
-                <li>Apply the CPI formula:
-                    
-                        CPI = 81 / 10 = 8.10
-                    </div>
-                </li>
-            </ol>
-            <p>Therefore, the Cumulative Performance Index (CPI) is 8.10.</p>
-        </div>
-        <P></P>
-
-        
     </div>
+
+    <h2>Example Calculation:</h2>
+    <p>Assume you have 1 courses every semester the following grades and credits:</p>
+    <ul>
+        <li>Course 1: Grade = 8, Credits = 3</li>
+        <li>Course 2: Grade = 9, Credits = 4</li>
+        <li>Course 3: Grade = 7, Credits = 3</li>
+    </ul>
+
+    <p>Using the CPI formula:</p>
+    <p>CPI = (8 * 3 + 9 * 4 + 7 * 3) / (3 + 4 + 3)</p>
+    <p>CPI = (24 + 36 + 21) / 10</p>
+    <p>CPI = 81 / 10</p>
+    <p>CPI = 8.10</p>
+
     <h2>6. Attendance Percentage Calculation</h2>
         <p>Attendance percentage is a crucial metric in academic performance. It's calculated using the following formula:</p>
         <div class="formula">
@@ -468,36 +361,8 @@
 
         <p>Note: The exact attendance policies may vary between institutions. Students should always refer to their specific institution's guidelines.</p>
 
-        <h3>Calculating Make-up Classes Needed</h3>
-        <p>If a student's attendance is below the required percentage, they might need to calculate how many additional classes they need to attend to meet the requirement. Here's how to do that:</p>
-
-        <div class="formula">
-            Classes Needed = ((Required Percentage / 100) × Total Classes) - Classes Attended
-        </div>
-
-        <div class="example">
-            <h3>Example Make-up Classes Calculation:</h3>
-            <p>Let's calculate how many classes a student needs to attend to reach 75% attendance:</p>
-            <ul>
-                <li>Total number of classes in the semester: 50</li>
-                <li>Number of classes attended so far: 30</li>
-                <li>Required attendance percentage: 75%</li>
-            </ul>
-            <p>Steps:</p>
-            <ol>
-                <li>Calculate the number of classes needed for 75% attendance:
-                    <ul>
-                        <li>Classes Needed = ((75 / 100) × 50) - 30</li>
-                        <li>Classes Needed = 37.5 - 30 = 7.5</li>
-                    </ul>
-                </li>
-                <li>Round up to the nearest whole number: 8 classes</li>
-            </ol>
-            <p>The student needs to attend 8 more classes to reach the 75% attendance requirement.</p>
-        </div>
         
-        
-        <div class="warning">
+        <div class="rib">
             <h3>Conclusion</h3>
              <p>These mathematical concepts form the core of the academic performance calculator. The calculator uses these formulas to convert raw marks into grades, calculate Final grade, and determine overall performance indices like SPI and CPI.</p>
              <p>Please note that terminology used on this page may differ from globally or nationally accepted terminology. The grading system and calculation methods may vary between institutions and education systems.</p>
