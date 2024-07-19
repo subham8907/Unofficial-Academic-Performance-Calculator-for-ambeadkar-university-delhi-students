@@ -14,6 +14,6 @@ User Responsibility: Users are responsible for verifying their grades and ensuri
 
 Changes to Disclaimer: We reserve the right to modify this disclaimer at any time without prior notice. Users are encouraged to review this disclaimer periodically for any changes.
 
-By using this site, you acknowledge and agree to the terms outlined in this disclaimer.
+By using this project, you acknowledge and agree to the terms outlined in this disclaimer.
 
 Please Note that 'O' grade means outstanding grade(highest grade) and should not be confused with zero (0).
