@@ -8,7 +8,7 @@ Accuracy of Results: The grade calculations provided by this site are based on t
 
 No Warranty: This site and its content are provided "as is" without any warranties of any kind, either express or implied. We do not guarantee that the information on this site will be accurate, complete, or up-to-date.
 
-Limitation of Liability: The author and operators of this site shall not be held liable for any errors, omissions, or inaccuracies in the grade calculations provided. Furthermore, they shall not be responsible for any loss, damage, or inconvenience caused as a result of reliance on the information provided by this site.
+Limitation of Liability: The author shall not be held liable for any errors, omissions, or inaccuracies in the grade calculations provided. Furthermore, they shall not be responsible for any loss, damage, or inconvenience caused as a result of reliance on the information provided by this site.
 
 User Responsibility: Users are responsible for verifying their grades and ensuring the accuracy of the input data they provide. For official grade confirmation and other academic inquiries, users should contact their respective universities or educational institutions.
 
