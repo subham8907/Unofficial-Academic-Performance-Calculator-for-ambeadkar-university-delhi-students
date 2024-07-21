@@ -8,14 +8,14 @@ Accuracy of Results: The grade calculations provided by this site are based on t
 
 No Warranty: This site and its content are provided "as is" without any warranties of any kind, either express or implied. We do not guarantee that the information on this site will be accurate, complete, or up-to-date.
 
-Limitation of Liability: The author shall not be held liable for any errors, omissions, or inaccuracies in the grade calculations provided. Furthermore, they shall not be responsible for any loss, damage, or inconvenience caused as a result of reliance on the information provided by this project for more information about limitation of laiblity please read license.
+Limitation of Liability: The author shall not be held liable for any errors, omissions, or inaccuracies in the grade calculations provided. Furthermore, they shall not be responsible for any loss, damage, or inconvenience caused as a result of reliance on the information provided by this project. For more information about limitations of liability, please refer to the license.txt.
 
 User Responsibility: Users are responsible for verifying their grades and ensuring the accuracy of the input data they provide. For official grade confirmation and other academic inquiries, users should contact their respective universities or educational institutions.
 
 Changes to Disclaimer: We reserve the right to modify this disclaimer at any time without prior notice. Users are encouraged to review this disclaimer periodically for any changes.
 
-For information please read license
 
+For More Information: Please read the license.txt.
 
 By using this project, you acknowledge and agree to the terms outlined in this disclaimer.
 
