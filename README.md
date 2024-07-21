@@ -14,5 +14,9 @@ User Responsibility: Users are responsible for verifying their grades and ensuri
 
 Changes to Disclaimer: We reserve the right to modify this disclaimer at any time without prior notice. Users are encouraged to review this disclaimer periodically for any changes.
 
+For information please read license
+
+
 By using this project, you acknowledge and agree to the terms outlined in this disclaimer.
 
+ 
