@@ -16,4 +16,3 @@ Changes to Disclaimer: We reserve the right to modify this disclaimer at any tim
 
 By using this project, you acknowledge and agree to the terms outlined in this disclaimer.
 
-Please Note that 'O' grade means outstanding grade(highest grade) and should not be confused with zero (0).
